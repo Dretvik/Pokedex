@@ -1,3 +1,93 @@
 body {
     background-color: red;
+    background-image: url(background.jpg);
 }
+#pokemonLogo {
+    width: 70%;
+}
+#container {
+    max-width: 1200px;
+    padding: 40px;
+    margin: 0 auto;
+    background-color: gray;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+}
+#pokedex {
+    padding-inline-start: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 25px;
+}
+.poke-card {
+    background-color: rgb(255, 255, 255);
+    list-style: none;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+}
+.poke-card:hover {
+    animation: bounce 0.3s linear;
+    cursor: pointer;
+}
+@keyframes bounce {
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+.poke-image {
+    height: 70%;
+    background-color: #F2F2F2;
+    
+}
+.poke-id {
+    margin: 0;
+    color: #919191;
+}
+.poke-name {
+    text-transform: capitalize;
+    margin-bottom: -5px;
+    margin-top: -2px;
+}
+.poke-type {
+    text-transform: capitalize;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 300vw;
+    width: 100vw;
+    background: white;
+    display: absolute;
+}
+#closeButton {
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    background-color: orangered;
+    border: none;
+    padding: 20px 30px;
+    border-radius: 4px;
+}
+#closeButton:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 3px black;
+}
+.poke-popup-image {
+    width: 20%;
+}
+.poke-popup-name {
+    text-transform: capitalize;
+    font-size: 200%;
+}
+.poke-popup-type {
+    text-transform: capitalize;
+}
+
+
