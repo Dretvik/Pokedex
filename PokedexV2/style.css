@@ -1,5 +1,4 @@
 body {
-    background-color: red;
     background-image: url(background.jpg);
 }
 #pokemonLogo {
@@ -9,7 +8,7 @@ body {
     max-width: 1200px;
     padding: 40px;
     margin: 0 auto;
-    background-color: gray;
+    background-color: rgba(128, 128, 128, 0.953);
     text-align: center;
 }
 h1 {
@@ -27,6 +26,7 @@ h1 {
     padding: 40px;
     border-radius: 20px;
     text-align: center;
+    box-shadow: 1px 2px 2px black;
 }
 .poke-card:hover {
     animation: bounce 0.3s linear;
@@ -57,14 +57,26 @@ h1 {
 .poke-type {
     text-transform: capitalize;
 }
+input[type=text] {
+    width: 40%;
+    height: 40px;
+    border: 4px solid blue;
+    text-align: center;
+    border-radius: 40px;
+}
 .popup {
     position: fixed;
     top: 0;
     left: 0;
-    height: 300vw;
+    height: 400vw;
     width: 100vw;
-    background: white;
+    background: grey;
     display: absolute;
+}
+.poke-popup-card {
+    height: 400vw;
+    text-align: center;
+    justify-content: center;
 }
 #closeButton {
     position: absolute;
@@ -82,9 +94,19 @@ h1 {
 .poke-popup-image {
     width: 20%;
 }
+.poke-popup-id {
+    font-size: 35px;
+}
 .poke-popup-name {
     text-transform: capitalize;
     font-size: 200%;
+}
+.poke-popup-container {
+    border: 2px solid black;
+    margin: 0 auto;
+    width: 30%;
+    background-color: white;
+    border-radius: 15px;
 }
 .poke-popup-type {
     text-transform: capitalize;

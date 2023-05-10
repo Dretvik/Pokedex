@@ -1,5 +1,4 @@
 const pokedex = document.getElementById("pokedex");
-const searchInput = document.querySelector("data-search");
 
 
 console.log(pokedex);
@@ -47,6 +46,10 @@ const displayPopup = (pokemonInfo) => {
           type.type.name).join(', ');
           const image = pokemonInfo.sprites['front_default'];
           console.log(pokemonInfo);
+
+    const stats = pokemonInfo.stats.map ( stats =>
+        stats.base_stat).join(', ');
+console.log(stats);
     const pokemonInfoHTMLString = `
         <div class="popup">
           <button id="closeButton" onclick="closePopup()">
@@ -55,9 +58,12 @@ const displayPopup = (pokemonInfo) => {
              <img class="poke-popup-image" src="${image}"/>
              <p class="poke-popup-id">#${pokemonInfo.id}</p>
              <h2 class="poke-popup-name">${pokemonInfo.name}</h2>
+           <div class="poke-popup-container">
              <p class="poke-popup-height">Height: ${pokemonInfo.height}0cm</p>
              <p class="poke-popup-weight">Weight: ${pokemonInfo.weight}kg</p>
              <p class="poke-popup-type">Type: ${type}</p>
+             <p> Stats: ${stats}</p>
+          </div>
          </div>
         </div>
     `
@@ -68,4 +74,22 @@ const closePopup = () => {
     popup.parentElement.removeChild(popup);
 }
 /**************************************/
+function pokeSearch() {
+    let input, filter, li, ol, h2, i, txtValue;
+    input = document.getElementById ('poke-search');
+    filter = input.value.toUpperCase();
+    ol = document.getElementById("pokedex");
+    li = ol.getElementsByTagName('li');
+
+    for (i = 0; i < li.length; i++) {
+        h2 = li[i].getElementsByTagName("h2")[0];
+        txtValue = h2.textContent || h2.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+        }
+    }
+}
+
 fetchPokemon();
