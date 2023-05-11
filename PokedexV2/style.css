@@ -72,11 +72,18 @@ input[type=text] {
     width: 100vw;
     background: grey;
     display: absolute;
+    opacity: 0.99;
 }
 .poke-popup-card {
     height: 400vw;
     text-align: center;
     justify-content: center;
+    max-width: 1800px;
+    display:block;
+
+}
+.poke-popup-positions {
+    display:grid;
 }
 #closeButton {
     position: absolute;
@@ -96,20 +103,38 @@ input[type=text] {
 }
 .poke-popup-id {
     font-size: 35px;
+    margin-bottom: -2%;
 }
 .poke-popup-name {
     text-transform: capitalize;
-    font-size: 200%;
+    font-size: 300%;
 }
 .poke-popup-container {
     border: 2px solid black;
     margin: 0 auto;
     width: 30%;
-    background-color: white;
+    background-color: #52A4D4;
     border-radius: 15px;
+    box-shadow: 0px 2px 3px black;
+
+
 }
 .poke-popup-type {
     text-transform: capitalize;
 }
+.poke-popup-abilities {
+    text-transform: capitalize;
+}
+.poke-popup-stats {
+    border: 2px solid black;
+    margin: 5px auto;
+    width: 30%;
+    background-color: orangered;
+    border-radius: 15px;
+    box-shadow: 0px 2px 3px black;
+    
+    
+}
+
 
 

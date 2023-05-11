@@ -34,7 +34,7 @@ const displayPokemon = (pokemon) => {
     pokedex.innerHTML = pokemonHTMLString;
 };
 
- /* Prøver å lage on clicked event med mer detaljer på*/ 
+ /* Popup card */ 
 const selectPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
@@ -47,23 +47,38 @@ const displayPopup = (pokemonInfo) => {
           const image = pokemonInfo.sprites['front_default'];
           console.log(pokemonInfo);
 
-    const stats = pokemonInfo.stats.map ( stats =>
+    const pokeStats = pokemonInfo.stats.map ( stats =>
         stats.base_stat).join(', ');
-console.log(stats);
+
+    const abilities = pokemonInfo.abilities.map ( abilities =>
+        abilities.ability.name).join(', ');
+        console.log(pokeStats);
+
     const pokemonInfoHTMLString = `
         <div class="popup">
           <button id="closeButton" onclick="closePopup()">
           Close</button>
           <div class="poke-popup-card">
-             <img class="poke-popup-image" src="${image}"/>
              <p class="poke-popup-id">#${pokemonInfo.id}</p>
              <h2 class="poke-popup-name">${pokemonInfo.name}</h2>
-           <div class="poke-popup-container">
+             <img alt="An image of the selected pokemon" 
+             class="poke-popup-image" src="${image}"/>
+        <div class="poke-popup-positions">
+         <div class="poke-popup-stats">
+             <p>Hp: ${pokemonInfo.stats[0].base_stat}</p>
+             <p>Attack: ${pokemonInfo.stats[1].base_stat}</p>
+             <p>Defense: ${pokemonInfo.stats[2].base_stat}</p>
+             <p>Sp Attack: ${pokemonInfo.stats[3].base_stat}</p>
+             <p>Sp Defence: ${pokemonInfo.stats[4].base_stat}</p>
+             <p>Speed: ${pokemonInfo.stats[5].base_stat}</p>
+         </div>
+          <div class="poke-popup-container">
              <p class="poke-popup-height">Height: ${pokemonInfo.height}0cm</p>
              <p class="poke-popup-weight">Weight: ${pokemonInfo.weight}kg</p>
              <p class="poke-popup-type">Type: ${type}</p>
-             <p> Stats: ${stats}</p>
+             <p class="poke-popup-abilities"> Abilities: ${abilities}</p>
           </div>
+    </div>
          </div>
         </div>
     `
