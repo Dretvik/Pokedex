@@ -3,38 +3,51 @@ const pokedex = document.getElementById("pokedex");
 
 console.log(pokedex);
 
+/* Arrow function to fetch the api */
+/* Starting of with an empty array of promises */
 const fetchPokemon = () => {
     const promises = [];
     for (let i = 1; i< 1009; i++) {
     const url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+    /* Looping through all the pokemon and make an object for each one in an array of objects */
+    /* pushing a new promise to the array */
     promises.push(fetch(url).then(( res) =>  res.json()));
 }
+/* .then gets our data */
+/* A Promise is a JavaScript object that links producing code and consuming code */
 Promise.all(promises).then( (results) => {
     const pokemon = results.map( (data) => ({
         name: data.name,
         id: data.id,
         image: data.sprites['front_default'],
+        /* Converting the "type" from an array to a string with the .join */
         type: data.types.map ( type => type.type.name).join(", ")
     }));
     displayPokemon(pokemon);
 });
-
 };
+/* Here we make our pokemon card with the data we got from the api */
+/* We can make our HTML elements here in JavaScript using a HTML string */
 const displayPokemon = (pokemon) => {
     console.log(pokemon);
+    /* We give these elements some classes, thats is for styling in CSS */
     const pokemonHTMLString = pokemon.map ( pokeman =>
         ` <li class="poke-card" onclick="selectPokemon(${pokeman.id})">
-             <img class="poke-image" src="${pokeman.image}"/>
+             <img alt="An image of the selected pokemon" 
+             class="poke-image" src="${pokeman.image}"/>
              <p class="poke-id">#${pokeman.id}</p>
              <h2 class="poke-name">${pokeman.name}</h2>
              <p class="poke-type">Type: ${pokeman.type}</p>
          </li>
         `)
         .join('');
+        /* Here we declare where the HTML string are going to be placed, and it is inside of the
+        element that have the id of "pokedex" */
     pokedex.innerHTML = pokemonHTMLString;
 };
 
- /* Popup card */ 
+ /* Here we make our Popup card, 
+ and we fetch the api again here for the individual pokemon that we click on */ 
 const selectPokemon = async (id) => {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
     const res = await fetch(url);
@@ -53,7 +66,7 @@ const displayPopup = (pokemonInfo) => {
     const abilities = pokemonInfo.abilities.map ( abilities =>
         abilities.ability.name).join(', ');
         console.log(pokeStats);
-
+/* Once again we make our HTML element in JavaScript */
     const pokemonInfoHTMLString = `
         <div class="popup">
           <button id="closeButton" onclick="closePopup()">
@@ -82,13 +95,14 @@ const displayPopup = (pokemonInfo) => {
          </div>
         </div>
     `
+/* We allso tell our new div to be on top of the other content in our HTML document */
 pokedex.innerHTML = pokemonInfoHTMLString + pokedex.innerHTML;
 };
 const closePopup = () => {
     const popup = document.querySelector('.popup');
     popup.parentElement.removeChild(popup);
 }
-/**************************************/
+/* Here we make our search function, looping through the text value in the input box(search box) */
 function pokeSearch() {
     let input, filter, li, ol, h2, i, txtValue;
     input = document.getElementById ('poke-search');
